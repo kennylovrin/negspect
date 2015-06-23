@@ -90,6 +90,26 @@ extension CameraViewController {
         captureSession.addOutput(output)
     }
     
+    private func imageOrientationForDeviceOrientation(orientation: UIDeviceOrientation) -> Int32 {
+        let orientation: Int32
+        
+        switch UIDevice.currentDevice().orientation {
+        case .Portrait, .Unknown, .FaceUp, .FaceDown:
+            orientation = 6
+            
+        case .PortraitUpsideDown:
+            orientation = 8
+            
+        case .LandscapeLeft:
+            orientation = 1
+            
+        case .LandscapeRight:
+            orientation = 3
+        }
+        
+        return orientation
+    }
+    
 }
 
 
@@ -122,7 +142,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         
         // create a frame image and tell the view to render
-        nextFrame = CIImage(CVPixelBuffer: imageBuffer).imageByApplyingOrientation(6)        
+        let orientation = imageOrientationForDeviceOrientation(UIDevice.currentDevice().orientation)
+        nextFrame = CIImage(CVPixelBuffer: imageBuffer).imageByApplyingOrientation(orientation)
         previewView?.display()
     }
     
