@@ -14,6 +14,7 @@
 		B9B295E71B39C66F00118EE4 /* NegspectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295E61B39C66F00118EE4 /* NegspectUITests.swift */; };
 		B9B295F71B39C6A200118EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295F51B39C6A200118EE4 /* AppDelegate.swift */; };
 		B9B295F81B39C6A200118EE4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295F61B39C6A200118EE4 /* CameraViewController.swift */; };
+		B9B295FD1B39EFE200118EE4 /* AVCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295FC1B39EFE200118EE4 /* AVCaptureDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B9B295E81B39C66F00118EE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9B295F51B39C6A200118EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9B295F61B39C6A200118EE4 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		B9B295FC1B39EFE200118EE4 /* AVCaptureDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			children = (
 				B9B295F51B39C6A200118EE4 /* AppDelegate.swift */,
 				B9B295F61B39C6A200118EE4 /* CameraViewController.swift */,
+				B9B295FC1B39EFE200118EE4 /* AVCaptureDevice.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B295FD1B39EFE200118EE4 /* AVCaptureDevice.swift in Sources */,
 				B9B295F81B39C6A200118EE4 /* CameraViewController.swift in Sources */,
 				B9B295F71B39C6A200118EE4 /* AppDelegate.swift in Sources */,
 			);
@@ -415,6 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Negspect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.kennylovrin.Negspect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,6 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Negspect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.kennylovrin.Negspect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
