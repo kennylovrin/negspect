@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CameraViewController.swift
 //  Negspect
 //
 //  Created by Kenny Lövrin on 23/06/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CameraViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

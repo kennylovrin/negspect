@@ -13,7 +13,7 @@
 		B9B295DC1B39C66F00118EE4 /* NegspectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295DB1B39C66F00118EE4 /* NegspectTests.swift */; };
 		B9B295E71B39C66F00118EE4 /* NegspectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295E61B39C66F00118EE4 /* NegspectUITests.swift */; };
 		B9B295F71B39C6A200118EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295F51B39C6A200118EE4 /* AppDelegate.swift */; };
-		B9B295F81B39C6A200118EE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295F61B39C6A200118EE4 /* ViewController.swift */; };
+		B9B295F81B39C6A200118EE4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B295F61B39C6A200118EE4 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,7 @@
 		B9B295E61B39C66F00118EE4 /* NegspectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegspectUITests.swift; sourceTree = "<group>"; };
 		B9B295E81B39C66F00118EE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9B295F51B39C6A200118EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B9B295F61B39C6A200118EE4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B9B295F61B39C6A200118EE4 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				B9B295F51B39C6A200118EE4 /* AppDelegate.swift */,
-				B9B295F61B39C6A200118EE4 /* ViewController.swift */,
+				B9B295F61B39C6A200118EE4 /* CameraViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9B295F81B39C6A200118EE4 /* ViewController.swift in Sources */,
+				B9B295F81B39C6A200118EE4 /* CameraViewController.swift in Sources */,
 				B9B295F71B39C6A200118EE4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
