@@ -58,7 +58,7 @@ extension CameraViewController {
     
     private func configureCaptureSession() {
         // set the preset
-        let preset = AVCaptureSessionPresetHigh
+        let preset = AVCaptureSessionPresetPhoto
         if captureSession.canSetSessionPreset(preset) {
             captureSession.sessionPreset = preset
         }
