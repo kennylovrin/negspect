@@ -144,10 +144,26 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         var image = CIImage(CVPixelBuffer: imageBuffer)
         
-        if let invertFilter = CIFilter(name: "CIColorInvert") {
-            invertFilter.setDefaults()
-            invertFilter.setValue(image, forKey: kCIInputImageKey)
-            if let outImage = invertFilter.valueForKey(kCIOutputImageKey) as? CIImage {
+        if let filter = CIFilter(name: "CIColorMatrix") {
+            filter.setDefaults()
+            filter.setValue(image, forKey: kCIInputImageKey)
+            
+            filter.setValue(CIVector(x: 0.8, y: 0, z: 0, w: 0), forKey: "inputRVector")
+            filter.setValue(CIVector(x: 0, y: 1.7, z: 0, w: 0), forKey: "inputGVector")
+            filter.setValue(CIVector(x: 0, y: 0, z: 1.6, w: 0), forKey: "inputBVector")
+            filter.setValue(CIVector(x: 0, y: 0, z: 0, w: 1), forKey: "inputAVector")
+            filter.setValue(CIVector(x: 0.3, y: 0.3, z: 0.3, w: 0), forKey: "inputBiasVector")
+            
+            if let outImage = filter.valueForKey(kCIOutputImageKey) as? CIImage {
+                image = outImage
+            }
+        }
+        
+        if let filter = CIFilter(name: "CIColorInvert") {
+            filter.setDefaults()
+            filter.setValue(image, forKey: kCIInputImageKey)
+            
+            if let outImage = filter.valueForKey(kCIOutputImageKey) as? CIImage {
                 image = outImage
             }
         }
