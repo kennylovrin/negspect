@@ -142,56 +142,19 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             return
         }
         
-        let inFormat = vImageCVImageFormat_CreateWithCVPixelBuffer(imageBuffer).takeRetainedValue()
-        //var err = vImageCVImageFormat_SetChromaSiting(inFormat, kCVImageBufferChromaLocation_TopLeft)
-        //print(err)
+        var image = CIImage(CVPixelBuffer: imageBuffer)
         
-        var inBuffer = vImage_Buffer()
-        inBuffer.data = CVPixelBufferGetBaseAddress(imageBuffer)
-        inBuffer.rowBytes = CVPixelBufferGetBytesPerRow(imageBuffer)
-        inBuffer.width = vImagePixelCount(CVPixelBufferGetWidth(imageBuffer))
-        inBuffer.height = vImagePixelCount(CVPixelBufferGetHeight(imageBuffer))
-        
-        var outFormat = vImage_CGImageFormat()
-        outFormat.bitsPerComponent = 8
-        outFormat.bitsPerPixel = 32
-        outFormat.bitmapInfo = [CGBitmapInfo.ByteOrder32Little, CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)]
-        outFormat.colorSpace = nil
-        
-        var err = vImageBuffer_InitWithCVPixelBuffer(
-            &inBuffer,
-            &outFormat,
-            imageBuffer,
-            inFormat,
-            nil,
-            vImage_Flags(kvImagePrintDiagnosticsToConsole)
-        )
-        print(err)
-        
-        var bufferData = [UInt8](count: Int(inBuffer.rowBytes) * Int(inBuffer.height), repeatedValue: 0)
-        var outBuffer = vImage_Buffer(data: &bufferData, height: inBuffer.height, width: inBuffer.width, rowBytes: inBuffer.rowBytes)
-        
-        /*err = vImageEqualization_ARGB8888(&inBuffer, &outBuffer, vImage_Flags(kvImageNoFlags));
-        print(err)*/
-        
-        /*err = vImageContrastStretch_ARGB8888(&inBuffer, &outBuffer, vImage_Flags(kvImagePrintDiagnosticsToConsole));
-        print(err)*/
-        
-        //err = vImageConvert_BGRA8888toRGB888(&inBuffer, &outBuffer, vImage_Flags(kvImagePrintDiagnosticsToConsole))
-        
-        /*err = vImageBuffer_CopyToCVPixelBuffer(
-            &outBuffer,
-            &outFormat,
-            imageBuffer,
-            inFormat,
-            nil,
-            vImage_Flags(kvImagePrintDiagnosticsToConsole)
-        )
-        print(err)*/
+        if let invertFilter = CIFilter(name: "CIColorInvert") {
+            invertFilter.setDefaults()
+            invertFilter.setValue(image, forKey: kCIInputImageKey)
+            if let outImage = invertFilter.valueForKey(kCIOutputImageKey) as? CIImage {
+                image = outImage
+            }
+        }
         
         // create a frame image and tell the view to render
         let orientation = imageOrientationForDeviceOrientation(UIDevice.currentDevice().orientation)
-        nextFrame = CIImage(CVPixelBuffer: imageBuffer).imageByApplyingOrientation(orientation)
+        nextFrame = image.imageByApplyingOrientation(orientation)
         previewView?.display()
     }
     
