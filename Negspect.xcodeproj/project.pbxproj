@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		039CCE9E1B4302DE00AA644D /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039CCE9D1B4302DE00AA644D /* PresentationController.swift */; };
 		03D7A62E1B431F1000C3DB80 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D7A62D1B431F1000C3DB80 /* PresentationManager.swift */; };
+		03D7A6351B433AEF00C3DB80 /* AdjustmentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D7A6341B433AEF00C3DB80 /* AdjustmentDelegate.swift */; };
 		03E2514A1B41CF15007C9079 /* AdjustmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E251491B41CF15007C9079 /* AdjustmentViewController.swift */; };
 		03E2514C1B41D008007C9079 /* ModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E2514B1B41D008007C9079 /* ModalTransitionAnimator.swift */; };
 		B9B295CC1B39C66F00118EE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B295CA1B39C66F00118EE4 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		039CCE9D1B4302DE00AA644D /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		03D7A62D1B431F1000C3DB80 /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
+		03D7A6341B433AEF00C3DB80 /* AdjustmentDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustmentDelegate.swift; sourceTree = "<group>"; };
 		03E251491B41CF15007C9079 /* AdjustmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustmentViewController.swift; sourceTree = "<group>"; };
 		03E2514B1B41D008007C9079 /* ModalTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransitionAnimator.swift; sourceTree = "<group>"; };
 		B9B295C31B39C66F00118EE4 /* Negspect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Negspect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03D7A62F1B4336B500C3DB80 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				03E2514B1B41D008007C9079 /* ModalTransitionAnimator.swift */,
+				039CCE9D1B4302DE00AA644D /* PresentationController.swift */,
+				03D7A62D1B431F1000C3DB80 /* PresentationManager.swift */,
+			);
+			name = Transition;
+			sourceTree = "<group>";
+		};
 		B9B295BA1B39C66F00118EE4 = {
 			isa = PBXGroup;
 			children = (
@@ -136,13 +148,12 @@
 		B9B295F41B39C6A200118EE4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				03D7A62F1B4336B500C3DB80 /* Transition */,
 				B9B295F51B39C6A200118EE4 /* AppDelegate.swift */,
 				B9B295F61B39C6A200118EE4 /* CameraViewController.swift */,
 				B9B295FC1B39EFE200118EE4 /* AVCaptureDevice.swift */,
 				03E251491B41CF15007C9079 /* AdjustmentViewController.swift */,
-				03E2514B1B41D008007C9079 /* ModalTransitionAnimator.swift */,
-				039CCE9D1B4302DE00AA644D /* PresentationController.swift */,
-				03D7A62D1B431F1000C3DB80 /* PresentationManager.swift */,
+				03D7A6341B433AEF00C3DB80 /* AdjustmentDelegate.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -291,6 +302,7 @@
 				039CCE9E1B4302DE00AA644D /* PresentationController.swift in Sources */,
 				03D7A62E1B431F1000C3DB80 /* PresentationManager.swift in Sources */,
 				B9B295F81B39C6A200118EE4 /* CameraViewController.swift in Sources */,
+				03D7A6351B433AEF00C3DB80 /* AdjustmentDelegate.swift in Sources */,
 				B9B295F71B39C6A200118EE4 /* AppDelegate.swift in Sources */,
 				03E2514A1B41CF15007C9079 /* AdjustmentViewController.swift in Sources */,
 			);

@@ -115,8 +115,12 @@ extension CameraViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Adjustment" {
-            segue.destinationViewController.transitioningDelegate = presentationManager
-            segue.destinationViewController.modalPresentationStyle = .Custom
+            guard let adjustmentViewController = segue.destinationViewController as? AdjustmentViewController else {
+                return
+            }
+            adjustmentViewController.transitioningDelegate = presentationManager
+            adjustmentViewController.modalPresentationStyle = .Custom
+            adjustmentViewController.delegate = self
         }
     }
     
@@ -167,5 +171,68 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         previewView?.display()
     }
     
+}
+
+extension CameraViewController: AdjustmentDelegate {
+
+    func adjustmentDelegateDidUpdateFocus(newFocus: Float) {
+        guard let device = AVCaptureDevice.backCamera else {
+            print("Failed to get camera device, can't continue!")
+            return
+        }
+
+        do {
+            try device.lockForConfiguration()
+
+            device.focusMode = .Locked
+            device.setFocusModeLockedWithLensPosition(newFocus, completionHandler: { (timestamp) in
+                print("Focues set to \(newFocus)")
+            })
+
+            device.unlockForConfiguration()
+        } catch let error {
+            print("Failed to lock capture device. \(error)")
+        }
+    }
+
+    func adjustmentDelegateDidUpdateISO(ISO: Float) {
+        guard let device = AVCaptureDevice.backCamera else {
+            print("Failed to get camera device, can't continue!")
+            return
+        }
+
+        do {
+            try device.lockForConfiguration()
+
+            device.exposureMode = .Custom
+            device.setExposureModeCustomWithDuration(AVCaptureExposureDurationCurrent, ISO: ISO, completionHandler: { (timestamp) in
+                print("ISO set to \(ISO)")
+            })
+
+            device.unlockForConfiguration()
+        } catch let error {
+            print("Failed to lock capture device. \(error)")
+        }
+    }
+
+    func adjustmentDelegateDidUpdateExposureDuration(exposureDurationInSeconds: Float64) {
+        guard let device = AVCaptureDevice.backCamera else {
+            print("Failed to get camera device, can't continue!")
+            return
+        }
+
+        do {
+            try device.lockForConfiguration()
+
+            device.exposureMode = .Custom
+            device.setExposureModeCustomWithDuration(CMTimeMakeWithSeconds(exposureDurationInSeconds, 1000*100*100), ISO: AVCaptureISOCurrent, completionHandler: { (timestamp) in
+                print("Exposure duration set to \(CMTimeMakeWithSeconds(exposureDurationInSeconds, 1000*100*100))")
+            })
+
+            device.unlockForConfiguration()
+        } catch let error {
+            print("Failed to lock capture device. \(error)")
+        }
+    }
 }
 
