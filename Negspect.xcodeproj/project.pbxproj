@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		039CCE9E1B4302DE00AA644D /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039CCE9D1B4302DE00AA644D /* PresentationController.swift */; };
+		03D7A62E1B431F1000C3DB80 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D7A62D1B431F1000C3DB80 /* PresentationManager.swift */; };
+		03E2514A1B41CF15007C9079 /* AdjustmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E251491B41CF15007C9079 /* AdjustmentViewController.swift */; };
+		03E2514C1B41D008007C9079 /* ModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E2514B1B41D008007C9079 /* ModalTransitionAnimator.swift */; };
 		B9B295CC1B39C66F00118EE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B295CA1B39C66F00118EE4 /* Main.storyboard */; };
 		B9B295CE1B39C66F00118EE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B295CD1B39C66F00118EE4 /* Assets.xcassets */; };
 		B9B295D11B39C66F00118EE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B295CF1B39C66F00118EE4 /* LaunchScreen.storyboard */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		039CCE9D1B4302DE00AA644D /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		03D7A62D1B431F1000C3DB80 /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
+		03E251491B41CF15007C9079 /* AdjustmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustmentViewController.swift; sourceTree = "<group>"; };
+		03E2514B1B41D008007C9079 /* ModalTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransitionAnimator.swift; sourceTree = "<group>"; };
 		B9B295C31B39C66F00118EE4 /* Negspect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Negspect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B295CB1B39C66F00118EE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9B295CD1B39C66F00118EE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +139,10 @@
 				B9B295F51B39C6A200118EE4 /* AppDelegate.swift */,
 				B9B295F61B39C6A200118EE4 /* CameraViewController.swift */,
 				B9B295FC1B39EFE200118EE4 /* AVCaptureDevice.swift */,
+				03E251491B41CF15007C9079 /* AdjustmentViewController.swift */,
+				03E2514B1B41D008007C9079 /* ModalTransitionAnimator.swift */,
+				039CCE9D1B4302DE00AA644D /* PresentationController.swift */,
+				03D7A62D1B431F1000C3DB80 /* PresentationManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -275,8 +287,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B295FD1B39EFE200118EE4 /* AVCaptureDevice.swift in Sources */,
+				03E2514C1B41D008007C9079 /* ModalTransitionAnimator.swift in Sources */,
+				039CCE9E1B4302DE00AA644D /* PresentationController.swift in Sources */,
+				03D7A62E1B431F1000C3DB80 /* PresentationManager.swift in Sources */,
 				B9B295F81B39C6A200118EE4 /* CameraViewController.swift in Sources */,
 				B9B295F71B39C6A200118EE4 /* AppDelegate.swift in Sources */,
+				03E2514A1B41CF15007C9079 /* AdjustmentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +521,7 @@
 				B9B295ED1B39C66F00118EE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9B295EE1B39C66F00118EE4 /* Build configuration list for PBXNativeTarget "NegspectTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +530,7 @@
 				B9B295F01B39C66F00118EE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9B295F11B39C66F00118EE4 /* Build configuration list for PBXNativeTarget "NegspectUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +539,7 @@
 				B9B295F31B39C66F00118EE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

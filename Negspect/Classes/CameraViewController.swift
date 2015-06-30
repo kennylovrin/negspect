@@ -21,6 +21,8 @@ class CameraViewController: UIViewController {
     
     private var context: CIContext?
     private var nextFrame: CIImage?
+
+    private let presentationManager = PresentationManager()
     
 
     override func viewDidLoad() {
@@ -109,6 +111,13 @@ extension CameraViewController {
         }
         
         return orientation
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Adjustment" {
+            segue.destinationViewController.transitioningDelegate = presentationManager
+            segue.destinationViewController.modalPresentationStyle = .Custom
+        }
     }
     
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,24 @@
                         <subviews>
                             <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQO-Ad-jWr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znt-iP-tKn">
+                                        <rect key="frame" x="500" y="500" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="PHI-fM-RQz"/>
+                                            <constraint firstAttribute="height" constant="100" id="lW0-Fz-mif"/>
+                                        </constraints>
+                                        <state key="normal" title="Adjustment"/>
+                                        <connections>
+                                            <segue destination="Y9q-Mv-eoy" kind="presentation" identifier="Adjustment" id="CqE-Ng-fkd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Znt-iP-tKn" secondAttribute="trailing" id="AIS-Oe-GFm"/>
+                                    <constraint firstAttribute="bottom" secondItem="Znt-iP-tKn" secondAttribute="bottom" id="f1h-OY-jxN"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="o40-SE-yG6"/>
                                 </connections>
@@ -34,13 +51,78 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CQO-Ad-jWr" secondAttribute="bottom" id="WAF-5D-tWq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="qXN-qT-0ni"/>
                     <connections>
                         <outlet property="previewView" destination="CQO-Ad-jWr" id="cpn-Aa-Z1V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="325" y="316"/>
+            <point key="canvasLocation" x="1137" y="316"/>
+        </scene>
+        <!--Adjustment View Controller-->
+        <scene sceneID="xuT-6Y-F7v">
+            <objects>
+                <viewController storyboardIdentifier="Adjustments" definesPresentationContext="YES" id="Y9q-Mv-eoy" customClass="AdjustmentViewController" customModule="Negspect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DXF-mI-Q4F"/>
+                        <viewControllerLayoutGuide type="bottom" id="cqg-71-8C2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nk4-er-qLM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAe-Ww-vcp">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="FfX-dG-OmJ" userLabel="height = 64"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Adjustment" id="Lxi-PM-IrK">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="IOB-nj-MWL">
+                                            <connections>
+                                                <action selector="closeTapped:" destination="Y9q-Mv-eoy" id="v58-Nd-EdT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xq-Pm-FNZ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UdP-oP-fIH">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xBh-mp-d7N">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="1Jd-Lm-eZp">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7Xq-Pm-FNZ" secondAttribute="trailing" id="3Ol-jH-X49"/>
+                            <constraint firstItem="vAe-Ww-vcp" firstAttribute="top" secondItem="nk4-er-qLM" secondAttribute="top" id="7D6-dy-GkI"/>
+                            <constraint firstItem="7Xq-Pm-FNZ" firstAttribute="top" secondItem="vAe-Ww-vcp" secondAttribute="bottom" id="PVL-mO-0Xr"/>
+                            <constraint firstItem="vAe-Ww-vcp" firstAttribute="leading" secondItem="nk4-er-qLM" secondAttribute="leading" id="VeT-Og-Ksp"/>
+                            <constraint firstItem="7Xq-Pm-FNZ" firstAttribute="leading" secondItem="nk4-er-qLM" secondAttribute="leading" id="Ybf-uz-qgm"/>
+                            <constraint firstAttribute="trailing" secondItem="vAe-Ww-vcp" secondAttribute="trailing" id="cWI-v1-FVY"/>
+                            <constraint firstItem="cqg-71-8C2" firstAttribute="top" secondItem="7Xq-Pm-FNZ" secondAttribute="bottom" id="mUZ-RW-6IF"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEP-wp-cjL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1137" y="1029"/>
         </scene>
     </scenes>
 </document>
