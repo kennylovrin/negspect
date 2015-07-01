@@ -115,39 +115,61 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKJ-d4-J4b">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hwh-YJ-fVH">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="EjD-88-JCY">
-                                                        <rect key="frame" x="113" y="20" width="95" height="29"/>
-                                                        <segments>
-                                                            <segment title="BW"/>
-                                                            <segment title="Color"/>
-                                                        </segments>
-                                                        <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="segmentedValueChanged:" destination="Y9q-Mv-eoy" eventType="valueChanged" id="RfR-x8-FvF"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="EjD-88-JCY" firstAttribute="centerX" secondItem="hwh-YJ-fVH" secondAttribute="centerX" id="oUE-te-uan"/>
-                                                    <constraint firstItem="EjD-88-JCY" firstAttribute="top" secondItem="hwh-YJ-fVH" secondAttribute="top" constant="20" id="sfD-cv-6Th"/>
-                                                </constraints>
-                                            </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="light"/>
-                                            </vibrancyEffect>
-                                        </visualEffectView>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="N4e-yl-9BJ">
+                                            <rect key="frame" x="113" y="20" width="95" height="29"/>
+                                            <segments>
+                                                <segment title="BW"/>
+                                                <segment title="Color"/>
+                                            </segments>
+                                            <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="segmentedValueChanged:" destination="Y9q-Mv-eoy" eventType="valueChanged" id="JET-cF-Qwt"/>
+                                            </connections>
+                                        </segmentedControl>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-2" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="Q40-vO-Ipu" userLabel="Red Horizontal Slider">
+                                            <rect key="frame" x="18" y="78" width="284" height="31"/>
+                                            <color key="tintColor" red="0.93725490199999995" green="0.25799857819999999" blue="0.24854026639999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="redSliderChanged:" destination="Y9q-Mv-eoy" eventType="valueChanged" id="Tfb-DW-dyd"/>
+                                                <action selector="sliderDidBeginEditing:" destination="Y9q-Mv-eoy" eventType="touchDown" id="sSd-sk-5Ze"/>
+                                                <action selector="sliderDidEndEditing:" destination="Y9q-Mv-eoy" eventType="touchUpOutside" id="1VT-UO-oMW"/>
+                                                <action selector="sliderDidEndEditing:" destination="Y9q-Mv-eoy" eventType="touchUpInside" id="Kwy-aD-Bfv"/>
+                                            </connections>
+                                        </slider>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-2" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="k78-eg-WQg" userLabel="Green Horizontal Slider">
+                                            <rect key="frame" x="18" y="128" width="284" height="31"/>
+                                            <color key="tintColor" red="0.34408991109999998" green="0.93725490199999995" blue="0.4761929037" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="greenSliderChanged:" destination="Y9q-Mv-eoy" eventType="valueChanged" id="y1v-Eg-egT"/>
+                                                <action selector="sliderDidBeginEditing:" destination="Y9q-Mv-eoy" eventType="touchDown" id="y1S-Rr-axh"/>
+                                                <action selector="sliderDidEndEditing:" destination="Y9q-Mv-eoy" eventType="touchUpOutside" id="IkJ-6Y-Rv4"/>
+                                                <action selector="sliderDidEndEditing:" destination="Y9q-Mv-eoy" eventType="touchUpInside" id="PHN-Ws-KVL"/>
+                                            </connections>
+                                        </slider>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-2" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="kMB-bv-S9J" userLabel="Blue Horizontal Slider">
+                                            <rect key="frame" x="18" y="178" width="284" height="31"/>
+                                            <color key="tintColor" red="0.43392545980000002" green="0.6715409658" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="blueSliderChanged:" destination="Y9q-Mv-eoy" eventType="valueChanged" id="KjL-FX-IXb"/>
+                                                <action selector="sliderDidBeginEditing:" destination="Y9q-Mv-eoy" eventType="touchDown" id="xBC-Ic-iGK"/>
+                                                <action selector="sliderDidEndEditing:" destination="Y9q-Mv-eoy" eventType="touchUpInside" id="bL0-9B-4iE"/>
+                                                <action selector="sliderDidEndEditing:" destination="Y9q-Mv-eoy" eventType="touchUpOutside" id="nJd-oe-Qfk"/>
+                                            </connections>
+                                        </slider>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="bKJ-d4-J4b" secondAttribute="bottom" id="Iyr-do-f7a"/>
-                                        <constraint firstItem="bKJ-d4-J4b" firstAttribute="leading" secondItem="mdV-gN-mCS" secondAttribute="leading" id="aTk-X6-aSP"/>
-                                        <constraint firstItem="bKJ-d4-J4b" firstAttribute="top" secondItem="mdV-gN-mCS" secondAttribute="top" id="tlg-gI-wMp"/>
-                                        <constraint firstAttribute="trailing" secondItem="bKJ-d4-J4b" secondAttribute="trailing" id="zCb-Yy-YaA"/>
+                                        <constraint firstItem="kMB-bv-S9J" firstAttribute="leading" secondItem="mdV-gN-mCS" secondAttribute="leading" constant="20" id="EDz-LO-amp"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q40-vO-Ipu" secondAttribute="trailing" constant="20" id="JPF-aY-RlC"/>
+                                        <constraint firstItem="kMB-bv-S9J" firstAttribute="top" secondItem="k78-eg-WQg" secondAttribute="bottom" constant="20" id="L5g-70-daQ"/>
+                                        <constraint firstItem="N4e-yl-9BJ" firstAttribute="top" secondItem="mdV-gN-mCS" secondAttribute="top" constant="20" id="PDZ-52-dqb"/>
+                                        <constraint firstItem="k78-eg-WQg" firstAttribute="leading" secondItem="mdV-gN-mCS" secondAttribute="leading" constant="20" id="UoC-ae-2Qr"/>
+                                        <constraint firstItem="k78-eg-WQg" firstAttribute="top" secondItem="Q40-vO-Ipu" secondAttribute="bottom" constant="20" id="WuZ-Tr-lkB"/>
+                                        <constraint firstItem="kMB-bv-S9J" firstAttribute="centerX" secondItem="mdV-gN-mCS" secondAttribute="centerX" id="X08-9m-uzt"/>
+                                        <constraint firstAttribute="trailing" secondItem="k78-eg-WQg" secondAttribute="trailing" constant="20" id="Yt5-Lj-v0y"/>
+                                        <constraint firstItem="Q40-vO-Ipu" firstAttribute="top" secondItem="N4e-yl-9BJ" secondAttribute="bottom" constant="30" id="aS5-fA-bEX"/>
+                                        <constraint firstItem="N4e-yl-9BJ" firstAttribute="centerX" secondItem="mdV-gN-mCS" secondAttribute="centerX" id="jpX-re-9Oz"/>
+                                        <constraint firstItem="Q40-vO-Ipu" firstAttribute="leading" secondItem="mdV-gN-mCS" secondAttribute="leading" constant="20" id="scp-cP-EAi"/>
+                                        <constraint firstAttribute="trailing" secondItem="kMB-bv-S9J" secondAttribute="trailing" constant="20" id="vaW-cV-tAl"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
@@ -180,7 +202,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="segmentedControl" destination="EjD-88-JCY" id="rqd-Aq-rZB"/>
+                        <outlet property="segmentedControl" destination="N4e-yl-9BJ" id="ius-xo-qwC"/>
+                        <outlet property="visualEffectView" destination="vMS-tc-BPN" id="Kg2-qh-pLy"/>
+                        <outletCollection property="rgbSliders" destination="Q40-vO-Ipu" collectionClass="NSMutableArray" id="KQe-ds-6TO"/>
+                        <outletCollection property="rgbSliders" destination="k78-eg-WQg" collectionClass="NSMutableArray" id="h2P-Mq-IK4"/>
+                        <outletCollection property="rgbSliders" destination="kMB-bv-S9J" collectionClass="NSMutableArray" id="bhz-hj-SzG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEP-wp-cjL" userLabel="First Responder" sceneMemberID="firstResponder"/>

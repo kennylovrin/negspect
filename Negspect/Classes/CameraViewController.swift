@@ -26,11 +26,16 @@ class CameraViewController: UIViewController {
 
     private let presentationManager = PresentationManager()
 
+    private var filterConfiguration = FilterConfiguration()
     private var selectedFilter: Filter?
+    private var rgbValues: [CGFloat]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        selectedFilter = filterConfiguration.selectedFilter
+        rgbValues = filterConfiguration.rgbArray
+
         configureContexts()
         configureCaptureSession()
     }
@@ -189,13 +194,13 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
     func applyColorMatrixFilterToImage(image: CIImage) -> CIImage {
-        if let filter = CIFilter(name: "CIColorMatrix") {
+        if let filter = CIFilter(name: "CIColorMatrix"), rgbValues = rgbValues {
             filter.setDefaults()
             filter.setValue(image, forKey: kCIInputImageKey)
-
-            filter.setValue(CIVector(x: 0.8, y: 0, z: 0, w: 0), forKey: "inputRVector")
-            filter.setValue(CIVector(x: 0, y: 1.7, z: 0, w: 0), forKey: "inputGVector")
-            filter.setValue(CIVector(x: 0, y: 0, z: 1.6, w: 0), forKey: "inputBVector")
+            
+            filter.setValue(CIVector(x: rgbValues[0], y: 0, z: 0, w: 0), forKey: "inputRVector")
+            filter.setValue(CIVector(x: 0, y: rgbValues[1], z: 0, w: 0), forKey: "inputGVector")
+            filter.setValue(CIVector(x: 0, y: 0, z: rgbValues[2], w: 0), forKey: "inputBVector")
             filter.setValue(CIVector(x: 0, y: 0, z: 0, w: 1), forKey: "inputAVector")
             filter.setValue(CIVector(x: 0.3, y: 0.3, z: 0.3, w: 0), forKey: "inputBiasVector")
 
@@ -208,7 +213,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 }
 
-extension CameraViewController: AdjustmentDelegate {
+
+extension CameraViewController {
 
     func updateExposure() {
         guard let device = AVCaptureDevice.backCamera else {
@@ -253,10 +259,25 @@ extension CameraViewController: AdjustmentDelegate {
             print("Failed to lock capture device. \(error)")
         }
     }
+}
+
+
+extension CameraViewController: AdjustmentDelegate {
 
     func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didSelectFilter filter: Filter) {
         selectedFilter = filter
     }
-    
+
+    func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didUpdateRedValue value: CGFloat) {
+        rgbValues[0] = value
+    }
+
+    func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didUpdateGreenValue value: CGFloat) {
+        rgbValues[1] = value
+    }
+
+    func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didUpdateBlueValue value: CGFloat) {
+        rgbValues[2] = value
+    }
 }
 

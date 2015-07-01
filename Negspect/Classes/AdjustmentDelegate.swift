@@ -12,4 +12,8 @@ protocol AdjustmentDelegate {
 
     func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didSelectFilter filter: Filter)
 
+    func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didUpdateRedValue value: CGFloat)
+    func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didUpdateGreenValue value: CGFloat)
+    func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didUpdateBlueValue value: CGFloat)
+
 }
