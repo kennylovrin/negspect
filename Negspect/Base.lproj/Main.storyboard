@@ -41,12 +41,46 @@
                                     <segue destination="Y9q-Mv-eoy" kind="presentation" identifier="Adjustment" id="CqE-Ng-fkd"/>
                                 </connections>
                             </button>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="gZK-Ny-kJb">
+                                <rect key="frame" x="20" y="455" width="94" height="29"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="exposureValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="ZqV-90-xFX"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exposure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-ol-OHy">
+                                <rect key="frame" x="37" y="489" width="61" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="1" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Owx-1b-KQX">
+                                <rect key="frame" x="20" y="514" width="94" height="29"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="focusValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Bir-wG-hTF"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDu-nu-7Ce">
+                                <rect key="frame" x="47" y="548" width="40" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Owx-1b-KQX" firstAttribute="centerX" secondItem="gZK-Ny-kJb" secondAttribute="centerX" id="4ao-ad-Urz"/>
+                            <constraint firstItem="zqR-ol-OHy" firstAttribute="top" secondItem="gZK-Ny-kJb" secondAttribute="bottom" constant="5" id="COx-8A-7yI"/>
+                            <constraint firstItem="aDu-nu-7Ce" firstAttribute="centerX" secondItem="Owx-1b-KQX" secondAttribute="centerX" id="DEQ-SE-EUi"/>
+                            <constraint firstItem="aDu-nu-7Ce" firstAttribute="top" secondItem="Owx-1b-KQX" secondAttribute="bottom" constant="5" id="SmY-1T-WfK"/>
                             <constraint firstAttribute="trailing" secondItem="CQO-Ad-jWr" secondAttribute="trailing" id="TM1-l4-BP6"/>
                             <constraint firstItem="CQO-Ad-jWr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="UWK-lw-89y"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Znt-iP-tKn" secondAttribute="bottom" constant="10" id="bDI-Lt-08e"/>
+                            <constraint firstItem="gZK-Ny-kJb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="dgh-n4-ALN"/>
+                            <constraint firstItem="gZK-Ny-kJb" firstAttribute="top" secondItem="CQO-Ad-jWr" secondAttribute="bottom" constant="8" id="fL2-AA-ipp"/>
+                            <constraint firstItem="Owx-1b-KQX" firstAttribute="top" secondItem="zqR-ol-OHy" secondAttribute="bottom" constant="8" id="g3A-N0-vfx"/>
+                            <constraint firstItem="zqR-ol-OHy" firstAttribute="centerX" secondItem="gZK-Ny-kJb" secondAttribute="centerX" id="pRQ-Ha-1nW"/>
                             <constraint firstAttribute="trailing" secondItem="Znt-iP-tKn" secondAttribute="trailing" constant="10" id="pgX-kr-o8k"/>
                             <constraint firstItem="CQO-Ad-jWr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vzQ-Ji-9Zl"/>
                         </constraints>
@@ -54,6 +88,8 @@
                     <navigationItem key="navigationItem" id="qXN-qT-0ni"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="exposureStepper" destination="gZK-Ny-kJb" id="RPz-uh-HQF"/>
+                        <outlet property="focusStepper" destination="Owx-1b-KQX" id="NvX-Kj-I7n"/>
                         <outlet property="previewView" destination="CQO-Ad-jWr" id="cpn-Aa-Z1V"/>
                     </connections>
                 </viewController>

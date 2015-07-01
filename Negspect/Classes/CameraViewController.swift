@@ -15,7 +15,9 @@ private let SampleBufferQueue = dispatch_queue_create("SampleBufferQueue", DISPA
 
 class CameraViewController: UIViewController {
     
-    @IBOutlet weak var previewView: GLKView?
+    @IBOutlet weak private var previewView: GLKView?
+    @IBOutlet weak private var exposureStepper: UIStepper!
+    @IBOutlet weak private var focusStepper: UIStepper!
     
     private let captureSession = AVCaptureSession()
     
@@ -90,7 +92,8 @@ extension CameraViewController {
         output.videoSettings = [
             String(kCVPixelBufferPixelFormatTypeKey): NSNumber(unsignedInt: kCVPixelFormatType_32BGRA)
         ]
-        
+
+        updateFocus(0.0)
         captureSession.addOutput(output)
     }
     
@@ -126,6 +129,13 @@ extension CameraViewController {
         }
     }
     
+    @IBAction func exposureValueChanged(sender: UIStepper) {
+        updateExposure()
+    }
+
+    @IBAction func focusValueChanged(sender: UIStepper) {
+        updateFocus(Float(sender.value))
+    }
 }
 
 
@@ -199,6 +209,50 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 }
 
 extension CameraViewController: AdjustmentDelegate {
+
+    func updateExposure() {
+        guard let device = AVCaptureDevice.backCamera else {
+            print("Failed to get camera device, can't continue!")
+            return
+        }
+
+        do {
+            try device.lockForConfiguration()
+            device.exposureMode = .Custom
+
+            let minISO = device.activeFormat.minISO
+            let maxISO = device.activeFormat.maxISO
+            let clampedISO = Float(exposureStepper.value * 0.1) * (maxISO - minISO) + minISO
+
+            device.setExposureModeCustomWithDuration(AVCaptureExposureDurationCurrent, ISO: clampedISO, completionHandler: { (timestamp) in
+                print("ISO set to \(clampedISO)")
+            })
+
+            device.unlockForConfiguration()
+        } catch let error {
+            print("Failed to lock capture device. \(error)")
+        }
+    }
+
+    func updateFocus(lensPosition: Float) {
+        guard let device = AVCaptureDevice.backCamera else {
+            print("Failed to get camera device, can't continue!")
+            return
+        }
+
+        do {
+            try device.lockForConfiguration()
+
+            device.focusMode = .Locked
+            device.setFocusModeLockedWithLensPosition(lensPosition, completionHandler: { (timestamp) in
+                print("Focues set to \(lensPosition)")
+            })
+
+            device.unlockForConfiguration()
+        } catch let error {
+            print("Failed to lock capture device. \(error)")
+        }
+    }
 
     func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didSelectFilter filter: Filter) {
         selectedFilter = filter
