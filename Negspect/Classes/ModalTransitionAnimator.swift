@@ -25,7 +25,7 @@ class ModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
         containerView.addSubview(presentedView)
 
-        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 10.0, options: .CurveEaseInOut, animations: {
+        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10.0, options: .CurveEaseInOut, animations: {
             presentedView.center = centre
 
             }) { (finished) -> Void in

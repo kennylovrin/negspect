@@ -10,9 +10,6 @@ import UIKit
 
 protocol AdjustmentDelegate {
 
-    /* Valid focus range is between 0-1 */
-    func adjustmentDelegateDidUpdateFocus(focus: Float)
-    func adjustmentDelegateDidUpdateISO(ISO: Float)
-    func adjustmentDelegateDidUpdateExposureDuration(exposureDurationInSeconds: Float64)
+    func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didSelectFilter filter: Filter)
 
 }

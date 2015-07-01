@@ -38,7 +38,7 @@ class PresentationController: UIPresentationController {
             return presentingViewController.view.bounds
         }
 
-        return containerView.bounds.rectByIntersecting(CGRect(origin: CGPoint(x: 0, y: 50), size: containerView.bounds.size))
+        return containerView.bounds
     }
 
     override func containerViewWillLayoutSubviews() {

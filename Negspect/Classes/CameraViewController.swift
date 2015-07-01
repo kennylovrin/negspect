@@ -23,7 +23,8 @@ class CameraViewController: UIViewController {
     private var nextFrame: CIImage?
 
     private let presentationManager = PresentationManager()
-    
+
+    private var selectedFilter: Filter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,8 +119,9 @@ extension CameraViewController {
             guard let adjustmentViewController = segue.destinationViewController as? AdjustmentViewController else {
                 return
             }
-            adjustmentViewController.transitioningDelegate = presentationManager
+            
             adjustmentViewController.modalPresentationStyle = .Custom
+            adjustmentViewController.transitioningDelegate = presentationManager
             adjustmentViewController.delegate = self
         }
     }
@@ -154,85 +156,53 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             print("Failed to get image buffer!")
             return
         }
-        
+
         var image = CIImage(CVPixelBuffer: imageBuffer)
-        
-        if let invertFilter = CIFilter(name: "CIColorInvert") {
-            invertFilter.setDefaults()
-            invertFilter.setValue(image, forKey: kCIInputImageKey)
-            if let outImage = invertFilter.valueForKey(kCIOutputImageKey) as? CIImage {
+
+        if selectedFilter == .Color {
+            image = applyColorMatrixFilterToImage(image)
+        }
+
+        if let filter = CIFilter(name: "CIColorInvert") {
+            filter.setDefaults()
+            filter.setValue(image, forKey: kCIInputImageKey)
+
+            if let outImage = filter.valueForKey(kCIOutputImageKey) as? CIImage {
                 image = outImage
             }
         }
-        
+
         // create a frame image and tell the view to render
         let orientation = imageOrientationForDeviceOrientation(UIDevice.currentDevice().orientation)
         nextFrame = image.imageByApplyingOrientation(orientation)
         previewView?.display()
     }
-    
+
+    func applyColorMatrixFilterToImage(image: CIImage) -> CIImage {
+        if let filter = CIFilter(name: "CIColorMatrix") {
+            filter.setDefaults()
+            filter.setValue(image, forKey: kCIInputImageKey)
+
+            filter.setValue(CIVector(x: 0.8, y: 0, z: 0, w: 0), forKey: "inputRVector")
+            filter.setValue(CIVector(x: 0, y: 1.7, z: 0, w: 0), forKey: "inputGVector")
+            filter.setValue(CIVector(x: 0, y: 0, z: 1.6, w: 0), forKey: "inputBVector")
+            filter.setValue(CIVector(x: 0, y: 0, z: 0, w: 1), forKey: "inputAVector")
+            filter.setValue(CIVector(x: 0.3, y: 0.3, z: 0.3, w: 0), forKey: "inputBiasVector")
+
+            if let outImage = filter.valueForKey(kCIOutputImageKey) as? CIImage {
+                return outImage
+            }
+        }
+
+        return image
+    }
 }
 
 extension CameraViewController: AdjustmentDelegate {
 
-    func adjustmentDelegateDidUpdateFocus(newFocus: Float) {
-        guard let device = AVCaptureDevice.backCamera else {
-            print("Failed to get camera device, can't continue!")
-            return
-        }
-
-        do {
-            try device.lockForConfiguration()
-
-            device.focusMode = .Locked
-            device.setFocusModeLockedWithLensPosition(newFocus, completionHandler: { (timestamp) in
-                print("Focues set to \(newFocus)")
-            })
-
-            device.unlockForConfiguration()
-        } catch let error {
-            print("Failed to lock capture device. \(error)")
-        }
+    func adjustmentViewController(adjustmentViewController: AdjustmentViewController, didSelectFilter filter: Filter) {
+        selectedFilter = filter
     }
-
-    func adjustmentDelegateDidUpdateISO(ISO: Float) {
-        guard let device = AVCaptureDevice.backCamera else {
-            print("Failed to get camera device, can't continue!")
-            return
-        }
-
-        do {
-            try device.lockForConfiguration()
-
-            device.exposureMode = .Custom
-            device.setExposureModeCustomWithDuration(AVCaptureExposureDurationCurrent, ISO: ISO, completionHandler: { (timestamp) in
-                print("ISO set to \(ISO)")
-            })
-
-            device.unlockForConfiguration()
-        } catch let error {
-            print("Failed to lock capture device. \(error)")
-        }
-    }
-
-    func adjustmentDelegateDidUpdateExposureDuration(exposureDurationInSeconds: Float64) {
-        guard let device = AVCaptureDevice.backCamera else {
-            print("Failed to get camera device, can't continue!")
-            return
-        }
-
-        do {
-            try device.lockForConfiguration()
-
-            device.exposureMode = .Custom
-            device.setExposureModeCustomWithDuration(CMTimeMakeWithSeconds(exposureDurationInSeconds, 1000*100*100), ISO: AVCaptureISOCurrent, completionHandler: { (timestamp) in
-                print("Exposure duration set to \(CMTimeMakeWithSeconds(exposureDurationInSeconds, 1000*100*100))")
-            })
-
-            device.unlockForConfiguration()
-        } catch let error {
-            print("Failed to lock capture device. \(error)")
-        }
-    }
+    
 }
 
